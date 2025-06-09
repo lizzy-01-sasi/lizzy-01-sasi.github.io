@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SISSCO Hair Artist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for headings and service names -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff69b4;
+      --black: #18181a;
+      --maroon: #800000;
+      --gold: #FFD700;
+      --white: #fff;
+      --navbar-bg: rgba(24, 24, 26, 0.7);
+      --card-bg: rgba(255,255,255,0.98);
+      --shadow: 0 8px 24px rgba(0,0,0,0.10);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--white) 100%);
+      margin: 0; font-family: 'Montserrat', Arial, sans-serif;
+      color: var(--black); min-height: 100vh;
+    }
+    .navbar {
+      position: sticky; top: 0; width: 100%; z-index: 100;
+      backdrop-filter: blur(6px);
+      background: var(--navbar-bg);
+      display: flex; justify-content: center; align-items: center;
+      border-bottom: 1.5px solid var(--gold);
+      box-shadow: 0 2px 12px rgba(128,0,0,0.05);
+    }
+    .navbar a {
+      color: var(--gold); text-decoration: none; font-size: 1.1rem; font-weight: 700;
+      padding: 18px 28px; border-radius: 8px; transition: background 0.25s, color 0.2s;
+      margin: 0 6px; letter-spacing: 1px;
+    }
+    .navbar a:hover, .navbar a.active {
+      background: var(--pink); color: var(--white); box-shadow: 0 4px 16px var(--maroon, #80000014);
+    }
+    section { padding: 50px 0 30px 0; max-width: 1100px; margin: 0 auto; }
+    .heading { text-align: center; margin-bottom: 24px; }
+    .heading h1 {
+      font-family: 'Playfair Display', serif; color: var(--white);
+      font-size: 2.4rem; letter-spacing: 2px; margin-bottom: 0.3em;
+      text-shadow: 1px 2px 8px #0001;
+    }
+    .heading h2 {
+      font-family: 'Montserrat', Arial, sans-serif; color: var(--maroon);
+      font-size: 1.6rem; letter-spacing: 1.5px; margin-top: 0;
+    }
+    .pole {
+      height: 8px; width: 80px;
+      background: linear-gradient(90deg, var(--maroon), var(--gold), var(--pink));
+      border-radius: 8px; margin: 18px auto 0 auto;
+    }
+    #home .welcome-text {
+      margin-top: 24px; text-align: center; color: var(--black); font-size: 1.1rem;
+      max-width: 650px; margin-left: auto; margin-right: auto;
+      background: rgba(255,255,255,0.6); border-radius: 10px; padding: 22px 16px;
+      box-shadow: var(--shadow);
+    }
+    #services .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px; margin-top: 25px;
+    }
+    .service-card {
+      background: var(--card-bg); border-radius: 16px; box-shadow: 0 6px 24px rgba(128,0,0,0.10);
+      padding: 0 0 22px 0; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s; border: 2px solid var(--gold);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      min-height: 420px;
+    }
+    .service-card:hover { transform: translateY(-5px) scale(1.03); border-color: var(--pink);}
+    .service-name {
+      font-family: 'Playfair Display', serif; font-size: 1.25rem;
+      color: var(--maroon); margin: 22px 0 10px 0; font-weight: 700; letter-spacing: 1px;
+      padding: 0 14px;
+    }
+    .service-image {
+      width: 98%px; max-width:245px; aspect-ratio: 1/1;
+      object-fit: cover; border-radius: 12px;
+      border: 2.5px solid var(--pink); background: #fff;
+      box-shadow: 0 2px 18px #80000010;
+      margin-bottom: 14px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      height: 200px;
+    }
+    .service-card:hover .service-image {
+      border-color: var(--maroon);
+      box-shadow: 0 4px 22px #ff69b46f;
+    }
+    .service-price {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.05rem; color: var(--gold); font-weight: bold;
+      margin-bottom: 7px; margin-top: 0;
+      letter-spacing: 0.5px;
+    }
+    .service-desc {
+      font-size: 0.98rem; color: #333; margin: 8px 0 18px 0; min-height: 28px;
+      padding: 0 12px;
+    }
+    .order-btn {
+      font-family: 'Montserrat', Arial, sans-serif;
+      padding: 11px 32px;
+      background: linear-gradient(90deg, var(--pink), var(--gold));
+      color: var(--white);
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 0 2px 12px #80000018;
+      cursor: pointer;
+      transition: background 0.20s, transform 0.18s, box-shadow 0.2s;
+      margin-top: auto;
+    }
+    .order-btn:hover {
+      background: linear-gradient(90deg, var(--maroon), var(--pink));
+      color: var(--gold);
+      transform: scale(1.04);
+      box-shadow: 0 4px 26px #ff69b446;
+    }
+    #aboutus .about-content {
+      background: rgba(255,255,255,0.7); border-radius: 12px; padding: 26px 16px;
+      box-shadow: var(--shadow); color: var(--maroon); font-size: 1.06rem; max-width: 750px;
+      margin: 0 auto; line-height: 1.7;
+    }
+    #contact .contact-card {
+      background: rgba(255,255,255,0.7); border-radius: 14px; box-shadow: var(--shadow);
+      padding: 22px 18px; max-width: 430px; margin: 0 auto; text-align: center; color: var(--black);
+    }
+    #contact .contact-card h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--black); margin-bottom: 8px;
+    }
+    .contact-details { margin: 15px 0; color: var(--maroon); font-size: 1.03rem; }
+    .social-links a {
+      color: var(--maroon); margin: 0 7px; font-size: 1.2rem; text-decoration: none; transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--gold); }
+    @media (max-width: 700px) {
+      .navbar a { padding: 10px 5px; font-size: 0.96rem; }
+      .heading h1 { font-size: 1.5rem; }
+      .heading h2 { font-size: 1.05rem; }
+      section { padding: 22px 4px 14px 4px; }
+      .service-card { min-height: 370px; }
+      .service-image { max-width: 140px; }
+      .service-name { font-size: 1.05rem; margin: 13px 0 7px 0; }
+      .order-btn { padding: 9px 18px; font-size: 0.98rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar" id="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#services">Services</a>
+    <a href="#aboutus">About Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <section id="home">
+    <div class="heading">
+      <h1>WELCOME TO....</h1>
+      <h2>SISSCO HAIR ARTIST</h2>
+      <div class="pole"></div>
+    </div>
+    <div class="welcome-text">
+      Discover a world of beauty and confidence at <span style="color:var(--pink);font-weight:bold;">SISSCO</span>, where every lady shines in her unique style. Step in for a pampering experience, expert hair care, and the latest trends, all in an elegant, tranquil atmosphere. Your dream look starts here!
+    </div>
+  </section>
+  <section id="services">
+    <div class="heading">
+      <h2>Our Services</h2>
+      <div class="pole"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-name">Facial treatement</div>
+        <img src="images/haircut.jpg" alt="facial treatment" class="service-image">
+        <div class="service-price">50,000/=Tsh</div>
+        <div class="service-desc">Precision cuts for all hair types, tailored to your style.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Face makeup</div>
+        <img src="images/color.jpg" alt="Face makeup" class="service-image">
+        <div class="service-price">60,000/=Tsh</div>
+        <div class="service-desc">Balayage, ombré, and highlights for brilliance and dimension.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Hair Spa & Treatment</div>
+        <img src="images/spa.jpg" alt="Hair Spa & Treatment" class="service-image">
+        <div class="service-price">50,000/=Tsh</div>
+        <div class="service-desc">Deep nourishing therapies for silky, healthy hair.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Bridal Styling</div>
+        <img src="images/bridal.jpg" alt="Bridal Styling" class="service-image">
+        <div class="service-price">100,000/=Tsh</div>
+        <div class="service-desc">Beautiful bridal updos and makeup for your special day.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Hair Straightening</div>
+        <img src="images/straightening.jpg" alt="Hair Straightening" class="service-image">
+        <div class="service-price">80,000/=Tsh</div>
+        <div class="service-desc">Keratin, smoothening, and rebonding for flawless, straight hair.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Hair Extensions</div>
+        <img src="images/extensions.jpg" alt="Hair Extensions" class="service-image">
+        <div class="service-price">45,000/=Tsh</div>
+        <div class="service-desc">Premium extensions for volume, length, or a fresh look.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Braiding & Protective Styles</div>
+        <img src="images/braids.jpg" alt="Braiding & Protective Styles" class="service-image">
+        <div class="service-price">70,000/=Tsh</div>
+        <div class="service-desc">Braids, twists, and stylish protective styles for all hair textures.</div>
+        <button class="order-btn">Place Order</button>
+      </div>
+      <div class="service-card">
+        <div class="service-name">Nails decoration</div>
+        <img src="images/braids.jpg" alt="Nails decoration" class="service-image">
+        <div class="service-price">30,000/=Tsh</div>
+        <div class="service-desc">beautiful coloring of your nails to much an aesthetic outlook.</div>
+        <button class="order-btn">Place Order</button>
+    </div>
+  </section>
+  <section id="aboutus">
+    <div class="heading">
+      <h2>About Us</h2>
+      <div class="pole"></div>
+    </div>
+    <div class="about-content">
+      At SISSCO Hair Artist, our passion is making every woman look and feel her best. With years of expertise, we believe in personalized care, quality products, and the joy of transformation. Visit us for an unforgettable salon experience!
+    </div>
+  </section>
+  <section id="contact">
+    <div class="heading">
+      <h2>Contact</h2>
+      <div class="pole"></div>
+    </div>
+    <div class="contact-card">
+      <h3>Get in Touch</h3>
+      <div class="contact-details">
+        📞 <b>Phone:</b>+255 753 893 425<br>
+        📧 <b>Email:</b> sasielizabeth@gmail.com<br>
+        📍 <b>Location:</b> Kigamboni (ferry), Dar-es-salaam
+      </div>
+      <div class="social-links">
+        <a href="#">Instagram</a> |
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
